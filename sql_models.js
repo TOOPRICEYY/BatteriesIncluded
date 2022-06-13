@@ -72,7 +72,7 @@ Date.prototype.getSQLFormat = function(){
 
 class Event{
     constructor(DateTime = new Date()){
-        this._Forms = "new EventForms()";
+        this._Forms = new EventForms();
         this._Cat = "";
         this._Type = "";
         this._Date = DateTime;
@@ -93,12 +93,21 @@ class Event{
 
 function addEvent(e){
 return new Promise((resolve,reject)=>{
-    query(`INSERT INTO Events (Name, DateTime, EventType, EventCategory, EventData) VALUES ("${e.getName()}", "${e.getDate().getSQLFormat()}", "${e.getType()}", "${e.getCat()}", ${JSON.stringify(e.getForms())});`)
+    query(`INSERT INTO Events (Name, DateTime, EventType, EventCategory, EventData) VALUES ("${e.getName()}", "${e.getDate().getSQLFormat()}", "${e.getType()}", "${e.getCat()}", "${JSON.stringify(e.getForms())}");`)
+    resolve("Your problems")
 })}
 
 function pullEvents(){
-    
-}
+    return new Promise(async (resolve,reject)=>{
+        let even = await query('SELECT * FROM Events');
+
+        for (const i in even) {
+            console.log(even[i])
+        }
+
+        resolve('Resolved')
+    })}
+
 
 
 
@@ -109,5 +118,6 @@ module.exports = {
     end:end,
     Event:Event,
     addEvent:addEvent,
+    pullEvents:pullEvents,
     EventForms:EventForms,
   };

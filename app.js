@@ -13,7 +13,9 @@ async function run(){
     even.Cat = "CUTE CAT"
     even.Type = "APPLE"
 
-    sqlmodels.addEvent(even);
+    await sqlmodels.addEvent(even);
+
+    await sqlmodels.pullEvents();
 
     sqlmodels.end()
 }
