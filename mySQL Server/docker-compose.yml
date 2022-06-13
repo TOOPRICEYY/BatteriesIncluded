@@ -1,13 +1,10 @@
 version: '2.1'
-volumes:
-  db:
-
 services:
   db:
     image: mysql/mysql-server:latest
     restart: always
     volumes:
-      - db:/var/lib/mysql
+      - ./data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=dbrootpass
       - MYSQL_PASSWORD=dbuserpass
