@@ -27,7 +27,7 @@ function initializedb(){ // creates tables and rows if don't exists already
         }
         str = str.slice(0,-1);
         str+=");";
-        return str;   
+        return str;    
     }
     return new Promise(async (resolve,reject)=>{
         for (const [key, value] of Object.entries(dbStucture)) {
