@@ -1,0 +1,57 @@
+#midinput{
+    width: 100vw;
+
+    margin: 0 auto;
+    
+}
+body{
+    background-color:black;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+#eventin{ 
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0) !important;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    color:rgb(30, 30, 30);
+    font-size: 14pt;
+    font-weight: 400;
+    line-height: 1.75;
+    border-color: rgb(123, 123, 123);
+    border-width: 1pt;
+    border-left-width: 0;
+    border-right-width: 0;
+    box-shadow: none!important;
+    transition: all 0.11s ease;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0 2%, black 12% 88%,rgba(255, 255, 255, 0) 98% 100%) 1;
+}
+#eventin:hover{
+    transition: all 0.05s ease;
+    border-top-width: 1.1pt;
+    border-bottom-width: 1.1pt;
+    border-color: rgb(72, 72, 72);
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0 2%, black 10% 90%,rgba(255, 255, 255, 0) 98% 100%) 1;
+}
+#eventin:hover:active{ 
+    border-color: rgb(0, 0, 0);
+    border-top-width: 1.5pt!important;
+    border-bottom-width: 1.5pt!important;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0 2%, black  5% 95%,rgba(255, 255, 255, 0) 98% 100%) 1;
+}
+#eventin:active{ 
+    border-top-width: 1.5pt !important;
+    border-bottom-width: 1.5pt !important;
+    border-color: rgb(0, 0, 0);
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0 2%, black  5% 95%,rgba(255, 255, 255, 0) 98% 100%) 1;
+}
+#eventin:focus{ 
+    border-color: rgb(0, 0, 0);
+    border-top-width: 1.5pt!important;
+    border-bottom-width: 1.5pt!important;
+    border-image:linear-gradient(to right, rgba(255, 255, 255, 0) 0 2%, black  5% 95%,rgba(255, 255, 255, 0) 98% 100%) 1;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+#eventin::placeholder{
+    text-align: center;
+}
