@@ -15,17 +15,17 @@ async function run(){
 
     await sqlmodels.addEvent(even);
 
+    //await sqlmodels.removeAllEvents();
+
     await sqlmodels.pullEvents();
 
-    sqlmodels.end()
 }
 
 run();
 
-/*
-app.get('/', (req, res) => {
-    
-})
+app.use(express.static('site_root'))
+
+//app.get('/', (req, res) => {})
 
 const server = app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
@@ -37,11 +37,10 @@ process.on('SIGTERM', shutDown);
 process.on('SIGINT', shutDown);
 
 function shutDown() {
-    console.log("THIS IS A MESSAGE")
-    sql_models.close();
+    console.log("Gracefully Shutting Down")
+    sqlmodels.end();
     server.close(() => {
         console.log('Closed out remaining connections');
         process.exit(0);
     });
 }
-*/
