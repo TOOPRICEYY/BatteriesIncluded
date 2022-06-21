@@ -78,6 +78,7 @@ class Event{
         this._Date = DateTime;
         this._Name =  "";
     }
+    str
     set Name(val){this._Name = val;}
     set Cat(val){this._Cat = val;}
     set Type(val){this._Type = val;}
