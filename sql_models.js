@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
   database: 'bigdata'
 })
 
-var dbStucture = {
+var dbParameters = { // Names set in event list percolate globally to classes storing the values
     'Events' : {'Name':'TINYTEXT','DateTime':'DATETIME','EventType':'TINYTEXT','EventCategory':'TINYTEXT','EventData':'MEDIUMTEXT'} 
 }
 
@@ -30,7 +30,7 @@ function initializedb(){ // creates tables and rows if don't exists already
         return str;    
     }
     return new Promise(async (resolve,reject)=>{
-        for (const [key, value] of Object.entries(dbStucture)) {
+        for (const [key, value] of Object.entries(dbParameters)) {
             res = await query(`SHOW TABLES LIKE \'%${key}%\';`);
             if(res.length==0){// if table doesnt already exists
                 await query(createTableStrGen(key,value));
@@ -56,6 +56,7 @@ function initializedb(){ // creates tables and rows if don't exists already
         resolve("nothin")
     })   
 }
+
 function end(){
     connection.end()
 }
@@ -70,31 +71,51 @@ Date.prototype.getSQLFormat = function(){
     return (`${this.getFullYear()}-${this.getMonth()+1}-${this.getDate()} ${this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`);
 }
 
-class Event{
-    constructor(DateTime = new Date()){
-        this._Forms = new EventForms();
-        this._Cat = "";
-        this._Type = "";
-        this._Date = DateTime;
-        this._Name =  "";
-    }
-    str
-    set Name(val){this._Name = val;}
-    set Cat(val){this._Cat = val;}
-    set Type(val){this._Type = val;}
-    set Date(val){this._Date = val;}
-
-    getName(){return this._Name}
-    getDate(){return this._Date}
-    getForms(){return this._Forms}
-    getType(){return this._Type}
-    getCat(){return this._Cat}
-
+function sqlDataEncoder(temp){
+    if(temp.constructor === Date){ return temp.getSQLFormat() }
+    if(temp.constructor === EventForms){ return JSON.stringify(temp)}
+    return temp
 }
 
+class Event{
+    constructor(DateTime = new Date()){
+        this.param = [];
+        this.namemaps = {'DateTime':'Date','EventData':'Form','EventType':'Type','EventCategory':'Cat'}
+        for(const key in dbParameters['Events']){
+            if(key in this.namemaps){this[this.namemaps[key]]
+            }else{this[key]}
+        }
+        //initialize varibles here
+        this['Date'] = DateTime;
+        this['Form'] = new EventForms();
+    }
+
+    genSQLInsertStr(){ //gens insert sql query using namemaps provided and encoder
+        let str = "INSERT INTO Events ("
+        for(const key in dbParameters['Events']){
+            str+=key + ",";
+        }
+        str = str.slice(0,-1) + ") VALUES ("
+        let temp;
+        for(const key in dbParameters['Events']){
+            if(key in this.namemaps){temp = this[this.namemaps[key]]
+            }else{temp = this[key]}
+            str+=`"${sqlDataEncoder(temp)}",`
+        }
+        str = str.slice(0,-1) + ");"
+
+        return str;
+    }
+        
+}
+
+function removeAllEvents(){
+    return new Promise(async(resolve,reject)=>{await query("DELETE FROM Events;")
+    resolve("Your problems")})}
+
 function addEvent(e){
-return new Promise((resolve,reject)=>{
-    query(`INSERT INTO Events (Name, DateTime, EventType, EventCategory, EventData) VALUES ("${e.getName()}", "${e.getDate().getSQLFormat()}", "${e.getType()}", "${e.getCat()}", "${JSON.stringify(e.getForms())}");`)
+return new Promise(async (resolve,reject)=>{
+    await query(e.genSQLInsertStr())
     resolve("Your problems")
 })}
 
@@ -121,4 +142,5 @@ module.exports = {
     addEvent:addEvent,
     pullEvents:pullEvents,
     EventForms:EventForms,
+    removeAllEvents:removeAllEvents
   };
