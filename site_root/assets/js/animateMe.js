@@ -483,7 +483,6 @@ allBoxes = $(".Choices a");
    
     
 
-}
 
 
 //var RelationshipAdvices = new RelationshipAdvice();
