@@ -4,6 +4,24 @@ var allevents = [["Apple",["Food","Orange","Black","Fitness","Round","Square","P
 "Bad","Something","This is good","This is not","Another","Yet Another","Yellow"]],["Run",["Exersize","Fitness"]],["Cheese",["Food","Fitness"]],["Cat",["Exersize","Fitness"]]
 ,["cheeta",["Exersize","Fitness"]],["parakeet",["Exersize","Fitness"]],["Dog",["Sack","Fitness"]]];
 
+for(let i = 0; i<1000;++i){
+    let str="";
+    let arr= [];
+    for(let x = 0; x<Math.floor((Math.random() * 10) + 1); ++x){
+        str+=String.fromCharCode((Math.floor((Math.random() * 100) + 1)%25) + 65);
+    }
+    arr.push(str);
+    arr.push([]);
+    for(let x = 0; x<Math.floor((Math.random() * 10) + 1); ++x){
+        str=""
+        for(let x = 0; x<Math.floor((Math.random() * 10) + 1)%3; ++x){
+            str+=String.fromCharCode((Math.floor((Math.random() * 100) + 1)%25) + 65);
+        }
+        arr[1].push(str);
+    }
+    allevents.push(arr);
+}
+
 allevents.sort((a,b)=>{
     a1 = a[0].toLowerCase()
     b1 = b[0].toLowerCase()
@@ -128,3 +146,23 @@ function populateEventButtons(arr){
         i= (i%10)+1;
     });
 }
+
+
+
+(function() {
+    function scrollHorizontally(e) {
+        e = window.event || e;
+        var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+        document.getElementById('catselect').scrollLeft -= (delta * 40); // Multiplied by 40
+        e.preventDefault();
+    }
+    if (document.getElementById('catselect').addEventListener) {
+        // IE9, Chrome, Safari, Opera
+        document.getElementById('catselect').addEventListener('mousewheel', scrollHorizontally, false);
+        // Firefox
+        document.getElementById('catselect').addEventListener('DOMMouseScroll', scrollHorizontally, false);
+    } else {
+        // IE 6/7/8
+        document.getElementById('catselect').attachEvent('onmousewheel', scrollHorizontally);
+    }
+})();
