@@ -23,7 +23,7 @@ async function run(){
 
 run();
 
-app.use(express.static('site_root'))
+app.use('/',express.static('site_root'))
 
 //app.get('/', (req, res) => {})
 
