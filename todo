@@ -1,0 +1,8 @@
+form generator for edit and entry displays
+ - type and category selection hardcoded
+ - 1 through x selection
+ - multiple choice
+ - drop down
+ - small text in, num/text filter
+ - large text
+ - checkbox
