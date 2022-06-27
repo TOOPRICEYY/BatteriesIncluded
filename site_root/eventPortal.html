@@ -6,11 +6,12 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <script src="https://kit.fontawesome.com/ea0e2fa970.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="assets/css/eventPortal.css">
       
     </head>
-    <body id="body">
+    <body id="body" class="invert">
+        
 
         <section id = "catselect" class="sidescroll">
         <div class = "flexbuttons">
@@ -34,12 +35,43 @@
         </section>
         <p id="displayMoreRecent" class="noSelect">list more</p>
         </section>
+        
+        <section id="overlay" class="displayNone">
+        <section id="EveEdit", class="displayNone">
+          <input type="text" id="EveEdit-Name" placeholder="Event Name"/><c class ="fa-solid fa-xmark" id = "exitbtn"></c>
+          <section class="flexContain">
           
-        <section id="EveEdit" class="invisable"><section class="container"><p id="exit">&#215;</p><section></section>
-
+          <div class = "dropSelectForm">
+            <input type="text" class="FormTitle" placeholder="Title"/>
+          <div class="customDropDown">
+            <select>
+              <option>Selection</option>
+              <option>Add</option>
+              <option>Audi</option>
+              <option>BMW</option>
+              <option>Citroen</option>
+              <option>Ford</option>
+              <option>Honda</option>
+              <option >Jaguar</option>
+              <option>Land Rover</option>
+              <option>Mercedes</option>
+              <option >Mini</option>
+              <option >Nissan</option>
+              <option>Toyota</option>
+              
+            </select>
+          </div>
+          <i class="fa fa-minus-circle removebtn"></i>
+          </div>
+       
+          </section>
+          <section id="EveEdit-Btns"><btn class="Create optbutton">Create</btn><btn class="Cancel optbutton">Cancel<btn></section>
+        </section>
+          </section>
 
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/eventPortal.js"></script>
+        <script src="assets/js/customFormJs.js"></script>
         
         
     </body>

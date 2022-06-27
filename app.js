@@ -21,7 +21,7 @@ async function run(){
 
 }
 
-run();
+//run();
 
 app.use('/',express.static('site_root'))
 
