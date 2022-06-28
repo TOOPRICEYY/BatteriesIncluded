@@ -1,3 +1,4 @@
+{ // Drop Down Selector
 function createDropDownItemListener(c,val,editable){
   k = document.createElement("C");
   k.innerHTML = val;
@@ -33,7 +34,35 @@ function createDropDownItemListener(c,val,editable){
   });
 }
 
-function createDropDown(dom,entries,editable){
+function createDropDown(flexContainer,entries,editable,Title="Title"){
+
+  var inBox
+  if(editable){
+    inBox = document.createElement("input");
+    inBox.setAttribute("class","FormTitle"); inBox.setAttribute("placeholder",Title); inBox.setAttribute("type","text");
+  }else{
+    inBox = document.createElement("p");
+    inBox.setAttribute("class","FormTitle");
+    inBox.innerHTML = Title
+  }
+
+  flexContainer.appendChild(inBox)
+  
+  dom = document.createElement("DIV");
+  dom.setAttribute("class", "customDropDown");
+
+  flexContainer.appendChild(dom);
+
+
+  if(editable){
+    exitBtn =  document.createElement("i"); // exit button
+    exitBtn.setAttribute("class","fa fa-minus-circle removebtn")
+    dom.parentNode.appendChild(exitBtn)
+    exitBtn.addEventListener("click", function(e) {
+      this.parentNode.remove()
+    })
+  }
+
   a = document.createElement("DIV");
   a.setAttribute("class", "select-selected");
   if(entries.length == 0){
@@ -56,6 +85,12 @@ function createDropDown(dom,entries,editable){
     i1 = document.createElement("input")
     i1.setAttribute("type", "text");
     i1.setAttribute("placeholder", "Add To List");
+    $(i1).bind("keypress", function(event) {
+      if(event.which == 13) {
+      event.preventDefault();
+          $(this).next().click()
+      }
+    });
 
     i2 = document.createElement("btn")
     i2.setAttribute("class", "inlinebtn");
@@ -67,7 +102,7 @@ function createDropDown(dom,entries,editable){
       this.previousSibling.value = ""
 
       
-      this.parentNode.parentNode.insertBefore(c,this.parentNode.parentNode.firstChild)
+      this.parentNode.parentNode.insertBefore(c,this.parentNode.parentNode.lastChild)
       }
     });
     i.addEventListener("click", function(e) {e.stopPropagation();})
@@ -87,6 +122,7 @@ function createDropDown(dom,entries,editable){
     this.nextSibling.classList.toggle("select-hide");
     this.classList.toggle("select-arrow-active");
   });
+  
 }
 
 function closeAllSelect(elmnt) {
@@ -111,14 +147,5 @@ function closeAllSelect(elmnt) {
   }
 }
 
-createDropDown($(".customDropDown")[0],[],true)
-
-
-
-$(".flexContain .removebtn").click(function(e){
-    this.parentNode.remove()
-})
-
-/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
+}
