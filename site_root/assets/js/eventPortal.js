@@ -146,13 +146,14 @@ class Filters{
         this.eventFilters[0][row]=true;
         return true;
     }
+    
     strFilterEvents(str){
         let updated = []
         let val = str.toLowerCase()
         let i = 0;
         val+=String.fromCharCode(1);
         
-        while(this.eventSearchSubset[i][0].toLowerCase()<val){
+        while(this.eventSearchSubset[i][0].toLowerCase()+String.fromCharCode(1)<val){
             this.eventFilters[1][i] = false;
             if(this.alterFilter(i,false)){updated.push(i);}
             ++i;
@@ -233,7 +234,29 @@ showEventEdit()
 
 //Event creating/editing scripts
 
+class FormCreator{
+    constructor(){
+        
+    }
+}
 
+
+
+$("#add-new-form i").click(function(e) {
+    switch($("#add-new-form .dropdown").val()){
+        case "Drop Down":
+            $("#EveEdit .flexContain > div").slice(-2,-1).after(`<div class = "dropSelectForm">
+            <input type="text" class="FormTitle" placeholder="Title"/>
+          <div class="customDropDown">
+          </div>
+          <i class="fa fa-minus-circle removebtn"></i>
+          </div>`)
+            createDropDown( $("#EveEdit .flexContain > div").slice(-2,-1)[0],["Something"],true)
+        break;
+        default:
+            alert("Invalid Form Type")
+    }
+})
 
 
 
