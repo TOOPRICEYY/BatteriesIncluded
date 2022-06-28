@@ -251,7 +251,7 @@ $("#add-new-form i").click(function(e) {
           </div>
           <i class="fa fa-minus-circle removebtn"></i>
           </div>`)
-            createDropDown( $("#EveEdit .flexContain > div").slice(-2,-1)[0],["Something"],true)
+            createDropDown( $("#EveEdit .flexContain > div").slice(-2,-1)[0],[],true)
         break;
         default:
             alert("Invalid Form Type")
