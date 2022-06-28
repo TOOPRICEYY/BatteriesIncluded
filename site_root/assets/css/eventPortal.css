@@ -510,12 +510,21 @@ body{
     border-bottom-width:1px !important;
     box-shadow: none !important;
     background-color: transparent !important;
+    height: 2.75em;
+    width:100%;
+    display: block;
+    padding: 1em;
+
+    word-break: break-all;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 .removebtn{
     position: absolute;
     right: 0;
     top: 0;
-    margin-right: -7%;
+    margin-right: -2%;
     margin-top: 2%;
     
 }
@@ -528,7 +537,8 @@ body{
 /*Drop down*/
 .dropSelectForm{
     position: relative;
-    padding: 8pt;
+    padding: 10pt;
+    width: 240px;
 }
 
 .customDropDown{
@@ -536,25 +546,38 @@ body{
     width: 100%
 }
 
-.customDropDown select{
-    display: none; /*hide original SELECT element: */
-}
-
 .select-items div,.select-selected {
 padding: 8px 16px;
 border: 1px solid transparent;
 border-color: transparent transparent rgba(0, 0, 0, 0.4) transparent;
 cursor: pointer;
+word-break: break-all;
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+}
+
+.select-items > div > c{
+    text-overflow: ellipsis !important;
+    display: block;
+    word-break: break-all;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 .selectX{
     position: absolute;
     right:0;
     margin-right: 3pt;
-    padding: 4pt;
+    margin-top: -20pt;
+    padding: 3pt;
 }
 .selectX:hover{
     color: rgb(20, 20, 20);
     cursor: pointer;
+}
+.select-selected{
+    padding-right: 25pt;
 }
 
 .select-selected:after {
@@ -609,6 +632,8 @@ top: 100%;
 left: 0;
 right: 0;
 z-index: 99;
+
+width: 100%;
 }
 
 /* Hide the items when the select box is closed: */

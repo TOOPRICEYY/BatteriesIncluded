@@ -240,19 +240,20 @@ class FormCreator{
     }
 }
 
-
+var i = 0
 
 $("#add-new-form i").click(function(e) {
     switch($("#add-new-form .dropdown").val()){
         case "Drop Down":
-            $("#EveEdit .flexContain > div").slice(-2,-1).after(`<div class = "dropSelectForm">
-            <input type="text" class="FormTitle" placeholder="Title"/>
-          <div class="customDropDown">
-          </div>
-          <i class="fa fa-minus-circle removebtn"></i>
-          </div>`)
-            createDropDown( $("#EveEdit .flexContain > div").slice(-2,-1)[0],[],true)
+            $(this).parent().before(`<div class = "dropSelectForm"></div>`)
+            ++i;
+            createDropDown($(this).parent().prev()[0],["sdf","Event2"],true,Title="DROP IT DOWN")
         break;
+
+        case "Button Range Select":
+            
+        break;
+
         default:
             alert("Invalid Form Type")
     }
