@@ -500,6 +500,7 @@ body{
     display: flex;
     width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* Forms styling*/
@@ -527,11 +528,12 @@ body{
 /*Drop down*/
 .dropSelectForm{
     position: relative;
+    padding: 8pt;
 }
 
 .customDropDown{
     position: relative;
-    width: 200px;
+    width: 100%
 }
 
 .customDropDown select{
@@ -544,7 +546,6 @@ border: 1px solid transparent;
 border-color: transparent transparent rgba(0, 0, 0, 0.4) transparent;
 cursor: pointer;
 }
-
 .selectX{
     position: absolute;
     right:0;
@@ -572,6 +573,34 @@ cursor: pointer;
     top: 13px;
 }
 
+.customDropDown .inlinebtn{
+    margin: 0 !important;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 30%!important;
+    height:100%!important;
+}
+
+.customDropDown section{
+    display: flex;
+    align-items: center;
+    height:100%;
+}
+
+.customDropDown .inlinebtn:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: black;
+    cursor: pointer;
+
+}
+.customDropDown input{
+    box-shadow: none;
+    display: inline;
+    width: 70%;
+    margin: 0;
+}
+
+
 /* Style items (options): */
 .select-items {
 background-color: #fff;
@@ -593,6 +622,33 @@ background-color: rgba(0, 0, 0, 0.1);
 
 
 
+/*Add New*/
+
+
+#add-new-form{
+    /* border: 2pt solid black; */
+    display:flex;
+    align-items:center;
+    
+    
+}
+
+#add-new-form .dropdown{
+    font-size: small !important;
+    margin-left: 20pt;
+    border-radius: 5pt;
+    width:150px;
+}
+
+#add-new-form i{
+    padding: 10pt;
+    font-size: 20pt;
+}
+
+#add-new-form i:hover{
+    color: rgb(20, 20, 20);;
+    cursor: pointer;
+}
 
 
 
