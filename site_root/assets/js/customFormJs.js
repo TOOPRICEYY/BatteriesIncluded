@@ -50,6 +50,7 @@ function createDropDown(dom,entries,editable){
     createDropDownItemListener(c,entries[i],editable);
     b.appendChild(c);
   }
+  
   if(editable){
     i = document.createElement("section");
     i1 = document.createElement("input")
@@ -78,7 +79,7 @@ function createDropDown(dom,entries,editable){
 
   dom.appendChild(b);
 
-  b.getElementsByTagName('div')[0].click() // set first element to initially selected
+  if(entries.length!=0)b.getElementsByTagName('div')[0].click() // set first element to initially selected
 
   a.addEventListener("click", function(e) { // when select box is clicked close
     e.stopPropagation();
@@ -110,7 +111,7 @@ function closeAllSelect(elmnt) {
   }
 }
 
-createDropDown($(".customDropDown")[0],["Something"],true)
+createDropDown($(".customDropDown")[0],[],true)
 
 
 
